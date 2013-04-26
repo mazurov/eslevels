@@ -18,8 +18,10 @@ Eslevels runs on many popular web browsers, as well as other ECMAScript platform
 
 ## Install 
 
+### Npm
+
 ```sh
-$> npm install https://github.com/mazurov/eslevels.git
+$> npm install eslevels
 ```
 
 , or you could clone a library source code with examples
@@ -29,6 +31,14 @@ $> git clone https://github.com/mazurov/eslevels.git
 $> cd eslevels
 $> npm install
 ```
+
+### Bower
+
+```sh
+$> bower install eslevels
+```
+
+
 
 
 ## Browsers
@@ -81,3 +91,7 @@ Something like this:
   [ 1, 149, 150 ] ]
 
 ```
+
+## Credits
+
+* Yusuke Suzuki (twitter: @Constellation) and other contributors of escope library.
