@@ -3,7 +3,7 @@
     "version": "0.1.2",
     "main": "./eslevels.js",
     "dependencies": {
-        "escope": "git://github.com/Constellation/escope.git",
+        "escope": "https://github.com/Constellation/escope.git",
         "estraverse": "*"
     },
     "devDependencies": {
@@ -15,7 +15,7 @@
     },
     "licenses": [{
         "type": "BSD",
-        "url": "http://github.com/mazurov/eslevels/raw/master/LICENSE.BSD"
+        "url": "https://github.com/mazurov/eslevels/raw/master/LICENSE.BSD"
     }],
     "ignore": [
             "node_modules",
