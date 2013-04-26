@@ -1,12 +1,12 @@
 EsLevels
-========
+=======
 
 ECMAScript scope **levels** analyzer based on [escope](https://github.com/Constellation/escope) library.
 The original purpose of this library is to enable scope context coloring in javascript editors 
 (for [SublimeText](https://github.com/mazurov/sublime-levels) in first order).
 
 The library has only one method `levels(js_ast_tree)`.  It requires the use of a javascript's
-Mozilla Parser AST argument that can be produced by [esprima](git://github.com/ariya/esprima.git) javascript parser.
+Mozilla Parser AST argument that can be obtained from such parsers as [esprima](git://github.com/ariya/esprima.git)
 ([acorn](https://github.com/marijnh/acorn) parser has different "range" format). The method returns an array of tuples.
 Each tuple contains 3 numbers:
 
@@ -54,7 +54,11 @@ You need to include 4 scripts:
 
 ![demo](https://raw.github.com/mazurov/eslevels/master/examples/browser/screenshot.png)
 
+<<<<<<< HEAD
 ## Node
+=======
+## NodeJs
+>>>>>>> 7d87cbfd666bc69a688c825536ebd7636ec7ea33
 
 Clone the library source code (described in install section) and run example:
 
