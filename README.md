@@ -54,11 +54,7 @@ You need to include 4 scripts:
 
 ![demo](https://raw.github.com/mazurov/eslevels/master/examples/browser/screenshot.png)
 
-<<<<<<< HEAD
 ## Node
-=======
-## NodeJs
->>>>>>> 7d87cbfd666bc69a688c825536ebd7636ec7ea33
 
 Clone the library source code (described in install section) and run example:
 
