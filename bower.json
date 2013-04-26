@@ -6,12 +6,21 @@
         "escope": "git://github.com/Constellation/escope.git",
         "estraverse": "*"
     },
+    "devDependencies": {
+        "esprima": ">=1.0.2"
+    },
     "repository": {
         "type": "git",
-        "url": "http://github.com/mazurov/eslevels.git"
+        "url": "https://github.com/mazurov/eslevels.git"
     },
     "licenses": [{
         "type": "BSD",
         "url": "http://github.com/mazurov/eslevels/raw/master/LICENSE.BSD"
-    }]
+    }],
+    "ignore": [
+            "node_modules",
+        ".gitignore",
+        ".npmignore",
+        "package.json"
+    ]    
 }
