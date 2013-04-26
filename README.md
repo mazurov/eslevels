@@ -22,7 +22,7 @@ Eslevels runs on many popular web browsers, as well as other ECMAScript platform
 $> npm install https://github.com/mazurov/eslevels.git
 ```
 
-,or you could clone a library source code with examples
+, or you could clone a library source code with examples
 
 ```sh
 $> git clone https://github.com/mazurov/eslevels.git
@@ -56,7 +56,7 @@ You need to include 4 scripts:
 
 ## Node
 
-Clone the library source code (described in install section) and run example:
+Clone the library source code (described in install section) and run an example:
 
 ```sh
 $> node examples/nodejs/app.js example/nodejs/example.js
