@@ -21,22 +21,20 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-/*global esprima:true, estraverse:true, escope: true,
- define:true, require:true, exports:true */
+/*global escope: true, define:true, require:true, exports:true */
 (function(root, factory) {
     'use strict';
 
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js,
     // Rhino, and plain browser loading.
     if (typeof exports === 'object') {
-        module.exports = factory(
-        require('esprima'), require('escope'));
+        module.exports = factory(require('escope'));
     } else if (typeof define === 'function' && define.amd) {
-        define(['esprima', 'escope'], factory);
+        define(['escope'], factory);
     } else {
-        root.eslevels = factory(esprima, escope);
+        root.eslevels = factory(escope);
     }
-}(this, function(esprima, escope) {
+}(this, function(escope) {
     'use strict';
     var exports = {};
 
@@ -77,30 +75,6 @@
             }
         }
         return this._cache[name];
-    };
-
-    function Context(code) {
-        this._syntax = null;
-        this._scopeManager = null;
-        if (code) {
-            this.setCode(code);
-        }
-    }
-
-    Context.prototype.setCode = function(code) {
-        this._syntax = null;
-        this._scopeManager = null;
-        if (typeof code === 'string') {
-            this._syntax = esprima.parse(code, {
-                range: true
-            });
-        } else if (typeof code === 'object' && code.type === 'Program') {
-            if (typeof code.range !== 'object' || code.range.length !== 2) {
-                throw new Error('eslevels: Context only accepts a syntax tree with range information');
-            }
-            this._syntax = code;
-        }
-        this._scopeManager = escope.analyze(this._syntax);
     };
 
 
