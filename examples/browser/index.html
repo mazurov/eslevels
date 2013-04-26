@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* editor scope levels */
+        .cm-level0 { background-color: #ffffff; } /* white */
+        .cm-level1 { background-color: #aefab8; } /* green */
+        .cm-level2 { background-color: #fafa99; } /* yellow */
+        .cm-level3 { background-color: #a9f2ff; } /* blue */
+        .cm-level4 { background-color: #faadba; } /* red */
+        .cm-level5 { background-color: #c9bfff; } /* cyan */
+        .cm-level6 { background-color: #f9b5ff; } /* magenta */
+        .cm-level7 { background-color: #c7c7c7; } /* gray */
+        .cm-level8 { background-color: #ffc47d; } /* orange */
+        .cm-level9 { background-color: #cf9369; } /* crap-brown */
+
+        table { vertical-align: top; width:100%;}
+        td {width: 50%;}
+    </style>
+</head>
+<body>
+<table>
+<td>
+<textarea id="code" style="width:90%; height:100%">
+function MONAD(modifier) {
+    'use strict';
+
+    var prototype = Object.create(null);
+    prototype.is_monad = true;
+
+    function unit(value) {
+        var monad = Object.create(prototype);
+        monad.bind = function (func, args) {
+            return func.apply(
+                undefined,
+                [value].concat(Array.prototype.slice.apply(args || []))
+            );
+        };
+        if (typeof modifier === 'function') {
+            value = modifier(monad, value);
+        }
+        return monad;
+    }
+    unit.method = function (name, func) {
+        prototype[name] = func;
+        return unit;
+    };
+    unit.lift_value = function (name, func) {
+        prototype[name] = function () {
+            return this.bind(func, arguments);
+        };
+        return unit;
+    };
+    unit.lift = function (name, func) {
+        prototype[name] = function () {
+            var result = this.bind(func, arguments);
+            return result && result.is_monad === true ? result : unit(result);
+        };
+        return unit;
+    };
+    return unit;
+}
+
+MONAD(modifier)
+</textarea>
+</td>
+<td>
+<pre id="output">
+</pre>
+</td>
+</tr>
+</table>
+<button onclick="getLevels();">Colorize</button>
+
+<script type="text/javascript" src="esprima.js"></script>
+<script type="text/javascript" src="estraverse.js"></script>
+<script type="text/javascript" src="escope.js"></script>
+<script type="text/javascript" src="../../eslevels.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

@@ -19,6 +19,9 @@
     "dependencies": {
         "escope": ">=0.0.13"
     },
+    "devDependencies": {
+        "esprima": ">=1.0.2"
+    },
     "licenses": [{
         "type": "BSD",
         "url": "http://github.com/mazurov/eslevels/raw/master/LICENSE.BSD"
