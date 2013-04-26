@@ -1,9 +1,9 @@
 {
     "name": "eslevels",
-    "description": "ECMAScript scope levels based on esprima toolbox",
+    "description": "ECMAScript scope levels analyzer based on esprima toolbox",
     "homepage": "https://github.com/mazurov/eslevels.git",
     "main": "eslevels.js",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "engines": {
         "node": ">=0.4.0"
     },
