@@ -1,0 +1,26 @@
+{
+    "name": "eslevels",
+    "description": "ECMAScript scope levels based on esprima toolbox",
+    "homepage": "https://github.com/mazurov/eslevels.git",
+    "main": "eslevels.js",
+    "version": "0.0.1",
+    "engines": {
+        "node": ">=0.4.0"
+    },
+    "maintainers": [{
+        "name": "Alexander Mazurov",
+        "email": "alexander.mazurov@gmail.com",
+        "web": "http://github.com/mazurov"
+    }],
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/mazurov/eslevels.git"
+    },
+    "dependencies": {
+        "escope": ">=0.0.13"
+    },
+    "licenses": [{
+        "type": "BSD",
+        "url": "http://github.com/mazurov/eslevels/raw/master/LICENSE.BSD"
+    }]
+}
