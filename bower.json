@@ -1,6 +1,6 @@
 {
     "name": "eslevels",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "main": "./eslevels.js",
     "dependencies": {
         "escope": "git://github.com/Constellation/escope.git",
@@ -20,10 +20,10 @@
     "ignore": [
         ".gitignore",
         ".npmignore",
-        ".travis.yml"        
+        ".travis.yml",
         "node_modules",
         "components",
         "test",
-        "package.json",
+        "package.json"
     ]    
 }
