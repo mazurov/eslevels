@@ -3,9 +3,9 @@
     "description": "ECMAScript scope levels analyzer based on esprima toolbox",
     "homepage": "https://github.com/mazurov/eslevels.git",
     "main": "eslevels.js",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "engines": {
-        "node": ">=0.4.0"
+        "node": ">=0.8.0"
     },
     "maintainers": [{
         "name": "Alexander Mazurov",
@@ -16,11 +16,16 @@
         "type": "git",
         "url": "http://github.com/mazurov/eslevels.git"
     },
+    "scripts": {
+        "test": "mocha"
+    },
     "dependencies": {
         "escope": ">=0.0.13"
     },
     "devDependencies": {
-        "esprima": ">=1.0.2"
+        "esprima": ">=1.0.2",
+        "mocha": "*",
+        "expect.js": "*"
     },
     "licenses": [{
         "type": "BSD",
