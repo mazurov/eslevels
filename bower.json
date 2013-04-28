@@ -18,11 +18,12 @@
         "url": "https://github.com/mazurov/eslevels/raw/master/LICENSE.BSD"
     }],
     "ignore": [
+        ".gitignore",
+        ".npmignore",
+        ".travis.yml"        
         "node_modules",
         "components",
         "test",
-        ".gitignore",
-        ".npmignore",
-        "package.json"
+        "package.json",
     ]    
 }

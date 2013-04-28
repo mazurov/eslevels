@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mazurov/eslevels.png)](https://travis-ci.org/mazurov/eslevels)
+
 EsLevels
 =======
 
