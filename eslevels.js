@@ -21,9 +21,7 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
 /*global escope: true, define:true, require:true, exports:true */
-
 (function(root, factory) {
     'use strict';
 
@@ -79,47 +77,119 @@
         return this._cache[name];
     };
 
-
-    var RegionSet = function() {
-        this.regions = [];
+    var Region = function(level, first, last) {
+        this.level = level;
+        this.first = first;
+        this.last = last;
     };
 
-    RegionSet.prototype.addRegion = function(region) {
-        var newregions = [];
-        var curr;
-        if (this.regions.length === 0) {
-            this.regions.push(region);
-            return this;
+    Region.prototype.list = function() {
+        return [this.level, this.first, this.last];
+    };
+
+    var RegionNode = function(region) {
+        this.region = region;
+        this.next = null;
+    };
+
+    var RegionList = function() {
+        this.root = null;
+    };
+
+    RegionList.prototype.addRegion = function(region) {
+        var curr, prev, firstRegion, midRegion, lastRegion;
+        if (this.root === null) {
+            this.root = new RegionNode(region);
+            return this.root;
+        }
+        curr = this.root;
+        prev = null;
+        while (true) {
+            if (region.first === curr.region.first) {
+                firstRegion = new RegionNode(region);
+                lastRegion = new RegionNode(
+                    new Region(
+                        curr.region.level,
+                        region.last + 1,
+                        curr.region.last
+                    )
+                );
+                break;
+            }
+            if (region.last === curr.region.last) {
+                firstRegion = new RegionNode(
+                    new Region(
+                        curr.region.level,
+                        curr.region.first,
+                        region.first - 1
+                    )
+                );
+                lastRegion = new RegionNode(region);
+                break;
+            }
+            if ((region.first > curr.region.first) &&
+                (region.last < curr.region.last)) {
+                firstRegion = new RegionNode(
+                    new Region(
+                        curr.region.level,
+                        curr.region.first,
+                        region.first - 1
+                    )
+                );
+                midRegion = new RegionNode(region);
+                lastRegion = new RegionNode(
+                    new Region(
+                        curr.region.level,
+                        region.last + 1,
+                        curr.region.last
+                    )
+                );
+                break;
+            }
+            prev = curr;
+            curr = curr.next;
         }
 
-        for (var i = 0; i < this.regions.length; i++) {
-            curr = this.regions[i];
-            if (
-            (region[2] < curr[1]) || (region[1] > curr[2])) {
-                newregions.push(curr);
-            } else {
-                if (curr[1] !== region[1]) {
-                    newregions.push([curr[0], curr[1], region[1] - 1]);
-                }
-                newregions.push(region);
-                if (curr[2] !== region[2]) {
-                    newregions.push([curr[0], region[2] + 1, curr[2]]);
-                }
-            }
+        if (midRegion !== undefined) {
+            firstRegion.next = midRegion;
+            midRegion.next = lastRegion;
+        } else {
+            firstRegion.next = lastRegion;
         }
-        this.regions = newregions;
+        lastRegion.next = curr.next;
+        if (prev !== null) {
+            prev.next = firstRegion;
+        } else {
+            this.root = firstRegion;
+        }
+        //console.log(this.root);
+    };
+
+    RegionList.prototype.list = function() {
+        var result = [];
+        var curr = this.root;
+        while (curr !== null) {
+            result.push(curr.region.list());
+            curr = curr.next;
+        }
+        // console.log(result);
+        return result;
     };
 
 
     function addMainScopes(result, scopes) {
         for (var i = 0; i < scopes.length; i++) {
             if (!scopes[i].functionExpressionScope) {
-                result.addRegion([scopes[i].level(), scopes[i].block.range[0],
-                scopes[i].block.range[1]]);
+                result.addRegion(
+                    new Region(
+                        scopes[i].level(),
+                        scopes[i].block.range[0],
+                        scopes[i].block.range[1]
+                    )
+                );
             }
         }
     }
-
 
     function addScopeVariables(result, scope) {
         var refs = scope.references,
@@ -127,10 +197,14 @@
         var level, identifier;
         for (var i = 0; i < vars.length; i++) {
             if ((vars[i].defs.length > 0) &&
-                    (vars[i].defs[0].type === 'FunctionName')) {
-                result.addRegion([scope.level(),
-                vars[i].identifiers[0].range[0],
-                vars[i].identifiers[0].range[1]-1]);
+                (vars[i].defs[0].type === 'FunctionName')) {
+                result.addRegion(
+                    new Region(
+                        scope.level(),
+                        vars[i].identifiers[0].range[0],
+                        vars[i].identifiers[0].range[1] - 1
+                    )
+                );
             }
         }
 
@@ -139,13 +213,18 @@
             level = scope.find(identifier.name);
             if (level !== scope.level()) {
                 // console.log(identifier.range);
-                result.addRegion([level, identifier.range[0],
-                identifier.range[1] - 1]);
+                result.addRegion(
+                    new Region(
+                        level,
+                        identifier.range[0],
+                        identifier.range[1] - 1
+                    )
+                );
             }
         }
     }
 
-    var getScopes = function (ast) {
+    var getScopes = function(ast) {
         if (typeof ast === 'object' && ast.type === 'Program') {
             if (typeof ast.range !== 'object' || ast.range.length !== 2) {
                 throw new Error('eslevels: Context only accepts a syntax tree'+
@@ -156,13 +235,13 @@
     };
 
     exports.levels = function(ast) {
-        var result = new RegionSet();
+        var result = new RegionList();
         var scopes = getScopes(ast);
         addMainScopes(result, scopes);
         for (var i = 0; i < scopes.length; i++) {
             addScopeVariables(result, scopes[i]);
         }
-        return result.regions;
+        return result.list();
     };
 
     return exports;
