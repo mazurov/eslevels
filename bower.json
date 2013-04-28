@@ -1,6 +1,6 @@
 {
     "name": "eslevels",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "main": "./eslevels.js",
     "dependencies": {
         "escope": "git://github.com/Constellation/escope.git",
@@ -18,7 +18,9 @@
         "url": "https://github.com/mazurov/eslevels/raw/master/LICENSE.BSD"
     }],
     "ignore": [
-            "node_modules",
+        "node_modules",
+        "components",
+        "test",
         ".gitignore",
         ".npmignore",
         "package.json"
