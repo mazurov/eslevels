@@ -21,7 +21,9 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 /*global escope: true, define:true, require:true, exports:true */
+
 (function(root, factory) {
     'use strict';
 
@@ -109,7 +111,6 @@
     };
 
 
-
     function addMainScopes(result, scopes) {
         for (var i = 0; i < scopes.length; i++) {
             if (!scopes[i].functionExpressionScope) {
@@ -119,12 +120,14 @@
         }
     }
 
+
     function addScopeVariables(result, scope) {
         var refs = scope.references,
             vars = scope.variables;
         var level, identifier;
         for (var i = 0; i < vars.length; i++) {
-            if ((vars[i].defs.length > 0) && (vars[i].defs[0].type === 'FunctionName')) {
+            if ((vars[i].defs.length > 0) &&
+                    (vars[i].defs[0].type === 'FunctionName')) {
                 result.addRegion([scope.level(),
                 vars[i].identifiers[0].range[0],
                 vars[i].identifiers[0].range[1]-1]);
@@ -145,7 +148,8 @@
     var getScopes = function (ast) {
         if (typeof ast === 'object' && ast.type === 'Program') {
             if (typeof ast.range !== 'object' || ast.range.length !== 2) {
-                throw new Error('eslevels: Context only accepts a syntax tree with range information');
+                throw new Error('eslevels: Context only accepts a syntax tree'+
+                    'with range information');
             }
         }
         return escope.analyze(ast).scopes;
