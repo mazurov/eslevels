@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/mazurov/eslevels.png)](https://travis-ci.org/mazurov/eslevels)
+[![NPM Status](https://badge.fury.io/js/eslevels.png)](https://npmjs.org/package/eslevels)
+
 
 EsLevels
 =======
