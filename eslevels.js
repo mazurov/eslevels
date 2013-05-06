@@ -38,22 +38,37 @@
     'use strict';
     var exports = {};
 
+    // Cache names levels
     escope.Scope.prototype._cache = null;
+
+    // Store scope level
     escope.Scope.prototype._level = null;
 
+    // **Get scope level**
+    //
+    // Returns the Integer
     escope.Scope.prototype.level = function() {
+        // Don't count functionExpressionScope
         if (this.functionExpressionScope) {
             return this.upper.level();
         }
-        if (this._level === null) {
+        if (this._level === null) { // level not caclulated yer
             this._level = 0;
             if (this.upper !== null) {
+                // ```upper``` points to parent scope
                 this._level = 1 + this.upper.level();
             }
         }
         return this._level;
     };
+    
+    // **Find variable of function by name**
+    //
+    // Search in current or upper scopes
+    //
+    // Returns a level - the Integer
     escope.Scope.prototype.find = function(name) {
+        //
         var vars;
         if (this._cache === null) {
             this._cache = {};
