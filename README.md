@@ -14,12 +14,11 @@ Mozilla Parser AST argument that can be obtained from such parsers as [esprima](
 ([acorn](https://github.com/marijnh/acorn) parser has different "range" format). The leavels method returns an array of tuples.
 Each tuple contains 3 numbers:
 
-*  nesting level number (0 is global,  deeper functions have higher numbers),
+*  nesting level number &mdash The Integer : -1 for implicit global variables, deeper scopes have higher numbers 0,1,2,...),
 *  a level's starting position
 *  a level's end position
 
 Eslevels runs on many popular web browsers, as well as other ECMAScript platforms such as V8 and Node.js.
-
 
 ## Getting Started
 
@@ -56,7 +55,7 @@ $> bower install eslevels
 **Basic usage:**
 ```var levels = eslevels.levels(syntax, options)```
 
-How to obtain ```syntax``` is described at [esprima documentation](http://esprima.org/doc/index.html) in details
+How to get ```syntax``` is described at [esprima documentation](http://esprima.org/doc/index.html) in details.
 
 ```options``` is a dictionary and so far only one option is available:
 
@@ -65,9 +64,13 @@ How to obtain ```syntax``` is described at [esprima documentation](http://esprim
 	- __"mini"__ &mdash; Mark only important scope-related constructions (identifiers, function and catch keywords)
 
 You can understand meaning of **mode** option from the pictures below:
+
 * "full" mode:
+
 ![Full mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode_full.png)
+
 * "mini" mode:
+
 ![Mini mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode_mini.png)
 
 
@@ -108,18 +111,27 @@ Something like this:
 
 ```javascript
 [ [ 0, 0, 14 ],
-  [ 1, 15, 23 ],
-  [ 0, 24, 29 ],
-  [ 1, 30, 75 ],
-  [ 2, 76, 84 ],
-  [ 1, 85, 90 ],
-  [ 2, 91, 125 ],
-  [ 1, 126, 131 ],
-  [ 2, 132, 134 ],
-  [ 1, 135, 140 ],
-  [ 2, 141, 148 ],
-  [ 1, 149, 150 ] ]
-
+  [ -1, 15, 16 ],
+  [ 0, 17, 23 ],
+  [ 1, 24, 32 ],
+  [ 0, 33, 38 ],
+  [ 1, 39, 108 ],
+  [ 2, 109, 131 ],
+  [ 1, 132, 135 ],
+  [ 2, 136, 137 ],
+  [ 1, 138, 141 ],
+  [ 2, 142, 151 ],
+  [ 1, 152, 162 ],
+  [ 2, 163, 171 ],
+  [ 1, 172, 177 ],
+  [ 2, 178, 212 ],
+  [ 1, 213, 218 ],
+  [ 2, 219, 221 ],
+  [ 1, 222, 227 ],
+  [ 2, 228, 230 ],
+  [ 0, 231, 234 ],
+  [ 2, 235, 268 ],
+  [ 1, 269, 271 ] ]
 ```
 
 
