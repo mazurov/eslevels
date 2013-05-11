@@ -340,6 +340,6 @@
 		return result.list();
 	};
 
-	exports.version = '0.3.0-dev';
+	exports.version = '0.3.0';
 	return exports;
 }));
