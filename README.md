@@ -74,7 +74,7 @@ You can understand the meaning of **mode** option from the pictures below:
 ![Mini mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode-mini.png)
 
 
-#### In a web browsers
+#### In a web browser
 
 Open example/browser/index.html in your browser. You will see scope colorizing example.
 
