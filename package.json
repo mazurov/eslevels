@@ -3,7 +3,7 @@
     "description": "ECMAScript scope levels analyzer based on esprima toolbox",
     "homepage": "https://github.com/mazurov/eslevels.git",
     "main": "eslevels.js",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "engines": {
         "node": ">=0.8.0"
     },

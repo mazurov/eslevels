@@ -6,12 +6,12 @@ EsLevels
 =======
 
 ECMAScript scope **levels** analyzer based on [escope](https://github.com/Constellation/escope) library.
-The original purpose of this library is to enable scope context coloring in javascript editors 
+The original purpose of this library is to enable scope context coloring in javascript editors
 (for [SublimeText](https://github.com/mazurov/sublime-levels) in first order).
 
-The library has only one method `levels(js_ast_tree)`.  It requires the use of a javascript's
+The library has only one method `levels(syntax, options)`.  It requires the use of a javascript's
 Mozilla Parser AST argument that can be obtained from such parsers as [esprima](git://github.com/ariya/esprima.git)
-([acorn](https://github.com/marijnh/acorn) parser has different "range" format). The method returns an array of tuples.
+([acorn](https://github.com/marijnh/acorn) parser has different "range" format). The leavels method returns an array of tuples.
 Each tuple contains 3 numbers:
 
 *  nesting level number (0 is global,  deeper functions have higher numbers),
@@ -20,9 +20,16 @@ Each tuple contains 3 numbers:
 
 Eslevels runs on many popular web browsers, as well as other ECMAScript platforms such as V8 and Node.js.
 
-## Install 
 
-### Npm
+## Getting Started
+
+### Installation
+
+Eslevels library is only a single file that you can grab directly from
+[repository](https://raw.github.com/mazurov/eslevels/master/eslevels.js), or
+use [npm](https://npmjs.org/package/eslevels) or [bower](http://bower.io/) package managers
+
+**Npm:**
 
 ```sh
 $> npm install eslevels
@@ -36,18 +43,37 @@ $> cd eslevels
 $> npm install
 ```
 
-### Bower
+**Bower:**
 
 ```sh
 $> bower install eslevels
 ```
 
+### Usage
+
+#### Library interface
+
+**Basic usage:**
+```var levels = eslevels.levels(syntax, options)```
+
+How to obtain ```syntax``` is described at [esprima documentation](http://esprima.org/doc/index.html) in details
+
+```options``` is a dictionary and so far only one option is available:
+
+* **mode** &mdash; The String control what javascript constructions should be marked. Available values:
+  - __"full"__ &mdash; (default)  Mark a whole source code (white spaces, operators, all keywords,...)
+	- __"mini"__ &mdash; Mark only important scope-related constructions (identifiers, function and catch keywords)
+
+You can understand meaning of **mode** option from the pictures below:
+* "full" mode:
+![Full mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode_full.png)
+* "mini" mode:
+![Mini mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode_mini.png)
 
 
+**In a web browsers:**
 
-## Browsers
- 
- Open example/browser/index.html in your browser. You will see scope colorizing example.
+Open example/browser/index.html in your browser. You will see scope colorizing example.
 
 You need to include 4 scripts:
 
@@ -57,18 +83,18 @@ You need to include 4 scripts:
 <script type="text/javascript" src="escope.js"></script>
 <script type="text/javascript" src="eslevels.js"></script>
 ```
- 
- Then parse source code and obtain levels:
+
+ Then parse source code and obtain levels information:
 
  ```javascript
- var ast = esprima.parse(code, {range: true});
- var levels = eslevels.levels(ast);
+ var syntax = esprima.parse(code, {range: true});
+ var levels = eslevels.levels(syntax);
  console.log(levels);
  ```
 
 ![demo](https://raw.github.com/mazurov/eslevels/master/examples/browser/screenshot.png)
 
-## Node
+## With Node.js
 
 Clone the library source code (described in install section) and run an example:
 
@@ -95,6 +121,7 @@ Something like this:
   [ 1, 149, 150 ] ]
 
 ```
+
 
 ## Credits
 
