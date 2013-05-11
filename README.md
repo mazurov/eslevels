@@ -67,11 +67,11 @@ You can understand meaning of **mode** option from the pictures below:
 
 * "full" mode:
 
-![Full mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode_full.png)
+![Full mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode-full.png)
 
 * "mini" mode:
 
-![Mini mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode_mini.png)
+![Mini mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode-mini.png)
 
 
 **In a web browsers:**
