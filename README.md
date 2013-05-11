@@ -74,7 +74,7 @@ You can understand the meaning of **mode** option from the pictures below:
 ![Mini mode](https://raw.github.com/mazurov/eslevels/master/docs/images/mode-mini.png)
 
 
-**In a web browsers:**
+#### In a web browsers
 
 Open example/browser/index.html in your browser. You will see scope colorizing example.
 
@@ -97,7 +97,7 @@ You need to include 4 scripts:
 
 ![demo](https://raw.github.com/mazurov/eslevels/master/examples/browser/screenshot.png)
 
-## With Node.js
+#### With Node.js
 
 Clone the library source code (described in install section) and run an example:
 
