@@ -14,7 +14,7 @@ Mozilla Parser AST argument that can be obtained from such parsers as [esprima](
 ([acorn](https://github.com/marijnh/acorn) parser has different "range" format). The leavels method returns an array of tuples.
 Each tuple contains 3 numbers:
 
-*  nesting level number &mdash The Integer : -1 for implicit global variables, deeper scopes have higher numbers 0,1,2,...),
+*  nesting level number &mdash The Integer : -1 for implicit global variables, deeper scopes have higher numbers 0,1,2,...
 *  a level's starting position
 *  a level's end position
 
@@ -63,7 +63,7 @@ How to get ```syntax``` is described at [esprima documentation](http://esprima.o
   - __"full"__ &mdash; (default)  Mark a whole source code (white spaces, operators, all keywords,...)
 	- __"mini"__ &mdash; Mark only important scope-related constructions (identifiers, function and catch keywords)
 
-You can understand meaning of **mode** option from the pictures below:
+You can understand the meaning of **mode** option from the pictures below:
 
 * "full" mode:
 
