@@ -1,6 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/mazurov/eslevels.png?label=ready)](https://waffle.io/mazurov/eslevels)  
-[![Build Status](https://travis-ci.org/mazurov/eslevels.png)](https://travis-ci.org/mazurov/eslevels)
-[![NPM Status](https://badge.fury.io/js/eslevels.png)](https://npmjs.org/package/eslevels)
+[![Build Status](https://travis-ci.org/mazurov/eslevels.png)](https://travis-ci.org/mazurov/eslevels) [![NPM Status](https://badge.fury.io/js/eslevels.png)](https://npmjs.org/package/eslevels) [![Stories in Ready](https://badge.waffle.io/mazurov/eslevels.png?label=ready)](https://waffle.io/mazurov/eslevels)
 
 
 EsLevels
