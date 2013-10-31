@@ -228,7 +228,7 @@
 					new Region(
 					scopes[i].level(),
 					scopes[i].block.range[0],
-					scopes[i].block.range[1]));
+					scopes[i].block.range[1] - 1));
 			}
 		}
 	}
