@@ -1,9 +1,9 @@
 {
     "name": "eslevels",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "main": "./eslevels.js",
     "dependencies": {
-        "escope": "git://github.com/Constellation/escope.git",
+        "escope": "*",
         "estraverse": "*"
     },
     "devDependencies": {
@@ -25,5 +25,5 @@
         "components",
         "test",
         "package.json"
-    ]    
+    ]
 }
