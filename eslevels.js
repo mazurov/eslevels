@@ -23,19 +23,19 @@
 */
 /*global escope: true, define:true, require:true, exports:true */
 (function (root, factory) {
-	'use strict';
+	"use strict";
 
 	// Universal Module Definition (UMD) to support AMD, CommonJS/Node.js,
 	// Rhino, and plain browser loading.
-	if (typeof exports === 'object') {
-		module.exports = factory(require('escope'));
-	} else if (typeof define === 'function' && define.amd) {
-		define(['escope'], factory);
+	if (typeof exports === "object") {
+		module.exports = factory(require("escope"));
+	} else if (typeof define === "function" && define.amd) {
+		define(["escope"], factory);
 	} else {
 		root.eslevels = factory(escope);
 	}
 }(this, function (escope) {
-	'use strict';
+	"use strict";
 	var exports = {};
 
 	// Cache names levels
@@ -78,7 +78,7 @@
 			for (var i = 0; i < vars.length; ++i) {
 				if (vars[i].name === name) {
 					if (vars[i].defs && vars[i].defs[0] &&
-						vars[i].defs[0].type === 'ImplicitGlobalVariable') {
+						vars[i].defs[0].type === "ImplicitGlobalVariable") {
 						this._cache[name] = -1;
 					} else {
 						this._cache[name] = this.level();
@@ -136,7 +136,7 @@
 				break;
 			}
 
-			if (region.first == curr.first && region.last==curr.last) {
+			if (region.first === curr.first && region.last === curr.last) {
 				break;
 			}
 
@@ -198,14 +198,14 @@
 		var currNode = this.root;
 		var item, last;
 
-		var prev=null;
+		var prev = null;
 		var len;
 		while (currNode) {
 			len = result.length;
 			item = currNode.region.list();
 			if (len) {
-				last = result[len-1];
-				if ((last[0] === item[0]) && (last[2] === item[1]-1)) {
+				last = result[len - 1];
+				if ((last[0] === item[0]) && (last[2] === item[1] - 1)) {
 					last[2] = item[2];
 				} else {
 					result.push(item);
@@ -223,7 +223,7 @@
 	function addMainScopes(result, scopes) {
 		for (var i = 0; i < scopes.length; i++) {
 			if (!scopes[i].functionExpressionScope &&
-				scopes[i].type !== 'with') {
+				scopes[i].type !== "with") {
 				result.addRegion(
 					new Region(
 					scopes[i].level(),
@@ -233,23 +233,23 @@
 		}
 	}
 
-	function addScopeVariables(result, scope, isFullMode) {
+	function addScopeVariables(result, scope) {
 		var refs = scope.references,
 			vars = scope.variables;
 		var level, identifier, exists;
 
 		switch(scope.type) {
-			case 'function':
+			case "function":
 				if (!scope.functionExpressionScope) {
 					result.addRegion(new Region(scope.level(),
 						scope.block.range[0], scope.block.range[0] + 8 - 1));
 				}
 				break;
-			case 'with':
-				result.addRegion(new Region(scope.level()-1,
+			case "with":
+				result.addRegion(new Region(scope.level() - 1,
 						scope.block.range[0], scope.block.range[0] + 4 - 1));
 				break;
-			case 'catch':
+			case "catch":
 				result.addRegion(new Region(scope.level(),
 						scope.block.range[0], scope.block.range[0] + 5 - 1));
 				break;
@@ -260,7 +260,7 @@
 
 		for (var i = 0; i < vars.length; i++) {
 			if (vars[i].defs.length &&
-				vars[i].defs[0].type === 'ImplicitGlobalVariable') {
+				vars[i].defs[0].type === "ImplicitGlobalVariable") {
 				continue;
 			}
 
@@ -280,8 +280,8 @@
 
 
 			exists = false;
-			if (level != -1) {
-				if (scope.type === 'catch') {
+			if (level !== -1) {
+				if (scope.type === "catch") {
 					vars = scope.upper.variables;
 				}
 
@@ -305,10 +305,10 @@
 
 
 	var getScopes = function (ast) {
-		if (typeof ast === 'object' && ast.type === 'Program') {
-			if (typeof ast.range !== 'object' || ast.range.length !== 2) {
-				throw new Error('eslevels: Context only accepts a syntax tree' +
-					'with range information');
+		if (typeof ast === "object" && ast.type === "Program") {
+			if (typeof ast.range !== "object" || ast.range.length !== 2) {
+				throw new Error("eslevels: Context only accepts a syntax tree" +
+					"with range information");
 			}
 		}
 		return escope.analyze(ast)
@@ -333,13 +333,13 @@
 
 	exports.levels = function (ast, options) {
 		var opts = options || {};
-		opts.mode = opts.mode || 'full';
+		opts.mode = opts.mode || "full";
 		var result = new RegionList();
 		var scopes = getScopes(ast);
 		modes[opts.mode](result, ast, scopes);
 		return result.list();
 	};
 
-	exports.version = '0.3.0';
+	exports.version = "0.3.1";
 	return exports;
 }));
