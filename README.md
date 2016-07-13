@@ -58,11 +58,15 @@ $> bower install eslevels
 
 How to get ```syntax``` is described at [esprima documentation](http://esprima.org/doc/index.html) in details.
 
-```options``` is a dictionary and so far only one option is available:
+```options``` is a dictionary:
 
 * **mode** &mdash; The String control what javascript constructions should be marked. Available values:
   - __"full"__ &mdash; (default)  Mark a whole source code (white spaces, operators, all keywords,...)
-	- __"mini"__ &mdash; Mark only important scope-related constructions (identifiers, function and catch keywords)
+  - __"mini"__ &mdash; Mark only important scope-related constructions (identifiers, function and catch keywords)
+
+* **escopeOpts** &mdash; Options to pass to [escope.analyze](http://estools.github.io/escope/global.html#analyze)
+  - __"sourceType"__ &mdash; the source type of the script. one of 'script' and 'module'
+  - __"ecmaVersion"__ &mdash; which ECMAScript version is considered (5, 6)
 
 You can understand the meaning of **mode** option from the pictures below:
 

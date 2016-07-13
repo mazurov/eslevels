@@ -10,9 +10,10 @@ var eslevels = require('../');
 describe('levels function', function () {
 	var inputDir = path.join(__dirname, 'input');
 	var file01 = path.join(inputDir, 'file01.js');
-	var source = fs.readFileSync(file01);
+	var file02 = path.join(inputDir, 'file02.js');
 
 	it('should return right list for "full" mode in ' + file01, function () {
+		var source = fs.readFileSync(file01);
 
 		var ast = esprima.parse(source, {
 			range: true
@@ -47,6 +48,9 @@ describe('levels function', function () {
 	});
 
 	it('should return right list for "mini" mode in ' + file01, function () {
+
+		var source = fs.readFileSync(file01);
+
 		var ast = esprima.parse(source, {
 			range: true
 		});
@@ -75,4 +79,23 @@ describe('levels function', function () {
 						[ 2, 251, 260 ]
 					]);
 	});
+
+	it('should parse file with import declarations' + file02, function () {
+		var source = fs.readFileSync(file02);
+
+		var ast = esprima.parse(source, {
+			range: true,
+			sourceType: 'module'
+		});
+		var levels = eslevels.levels(ast, {
+			mode: 'mini',
+			escopeOpts: {
+				sourceType: 'module',
+				ecmaVersion: 6
+			}
+		});
+		expect(levels)
+			.to.eql( [ [ 1, 7, 15 ] ] );
+	});
+
 });
