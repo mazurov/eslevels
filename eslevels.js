@@ -304,14 +304,14 @@
 	}
 
 
-	var getScopes = function (ast) {
+	var getScopes = function (ast, opts) {
 		if (typeof ast === "object" && ast.type === "Program") {
 			if (typeof ast.range !== "object" || ast.range.length !== 2) {
 				throw new Error("eslevels: Context only accepts a syntax tree" +
 					"with range information");
 			}
 		}
-		return escope.analyze(ast)
+		return escope.analyze(ast, opts)
 			.scopes;
 	};
 
@@ -335,7 +335,7 @@
 		var opts = options || {};
 		opts.mode = opts.mode || "full";
 		var result = new RegionList();
-		var scopes = getScopes(ast);
+		var scopes = getScopes(ast, opts.escopeOpts);
 		modes[opts.mode](result, ast, scopes);
 		return result.list();
 	};
