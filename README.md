@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mazurov/eslevels.png)](https://travis-ci.org/mazurov/eslevels)  [![Stories in Ready](https://badge.waffle.io/mazurov/eslevels.png?label=ready)](https://waffle.io/mazurov/eslevels)
+[![Build Status](https://travis-ci.org/mazurov/eslevels.png)](https://travis-ci.org/mazurov/eslevels)
 
 ![Status](https://nodei.co/npm/eslevels.png)
 
